@@ -1,0 +1,3 @@
+---
+ - name: stop sct
+   shell: /etc/ansible/opc_center/sctb.sh stop
