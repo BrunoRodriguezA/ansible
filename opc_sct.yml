@@ -2,7 +2,7 @@
  - name: sct
    hosts: localhost
    remote_user: astro
-   become: yes
+   become: no
    vars:
      - status: ""
    tasks: 
