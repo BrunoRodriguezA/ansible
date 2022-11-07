@@ -2,7 +2,7 @@
  - name: Transfer and execute a script 
    hosts: localhost
    remote_user: astro
-   become: no 
+   become: yes
    vars: 
      - queue: ""
      - items: "" 
