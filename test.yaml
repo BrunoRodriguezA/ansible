@@ -1,0 +1,9 @@
+--- 
+ - name: Prueba
+   hosts: localhost
+   remote_user: astro
+   become: no
+   tasks: 
+     - command: uname -a 
+       register: salida
+     - debug: var=salida.stdout_lines
