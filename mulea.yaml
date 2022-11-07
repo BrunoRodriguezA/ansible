@@ -9,3 +9,4 @@
    tasks: 
      - name: Execute script
        command: sh /home/astro/ansible/plays/repro_colas.sh {{queue}} {{items}}
+       ignore_errors: yes
