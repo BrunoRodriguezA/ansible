@@ -1,0 +1,11 @@
+--- 
+ - name: Transfer and execute a script 
+   hosts: localhost
+   remote_user: astro
+   become: no 
+   vars: 
+     - queue: ""
+     - items: "" 
+   tasks: 
+     - name: Execute script
+       shell: /home/astro/ansible/plays/repro_colas.sh {{queue}} {{items}}
