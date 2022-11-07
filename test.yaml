@@ -4,6 +4,6 @@
    remote_user: astro
    become: no
    tasks: 
-     - command: uname -a 
+     - command: cat /etc/os-release
        register: salida
      - debug: var=salida.stdout_lines
