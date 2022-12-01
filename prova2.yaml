@@ -1,13 +1,12 @@
----
- - name: SCT
+--- 
+ - name: SCT 
    hosts: localhost
    remote_user: guest
    become: no
-   vars_prompt:
-     - name: action
-       private: false
+   vars: 
+     - action: "" 
    tasks:
      - name: START/STOP SCT
-       shell: /etc/ansible/hi.sh {{status}}
-     - debug:
+       shell: /etc/ansible/hi.sh {{action}}
+     - debug: 
          msg: "{{action}} cargas SCT"
