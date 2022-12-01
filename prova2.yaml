@@ -3,6 +3,8 @@
    hosts: localhost
    remote_user: guest
    become: no
+   vars: 
+     - word: ""
    tasks:
      - name: start sct 
-       shell: /etc/ansible/hi.sh
+       shell: /etc/ansible/hi.sh {{word}}
