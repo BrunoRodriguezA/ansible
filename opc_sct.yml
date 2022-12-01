@@ -7,12 +7,10 @@
      - status: ""
    tasks: 
      - name: start sct
-       become: false
        include: /etc/ansible/opc_center/SCT-start.yml
        when: status == "start"
 
      - name: stop sct
-       become: false
        include: /etc/ansible/opc_center/SCT-stop.yml
        when: status == "stop"
        register: result
