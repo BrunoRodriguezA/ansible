@@ -4,9 +4,9 @@
    remote_user: guest
    become: no
    vars:
-     - status: ""
+     - action: ""
    tasks:
      - name: START/STOP SCT
        shell: /etc/ansible/hi.sh {{status}}
      - debug:
-         msg: "{{status}} cargas SCT"
+         msg: "{{action}} cargas SCT"
