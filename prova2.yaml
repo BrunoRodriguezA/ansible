@@ -1,0 +1,9 @@
+---
+ - name: Prueba
+   hosts: localhost
+   remote_user: guest
+   become: no
+   tasks:
+     - command: whoami 
+       register: salida
+     - debug: var=salida.stdout_lines
