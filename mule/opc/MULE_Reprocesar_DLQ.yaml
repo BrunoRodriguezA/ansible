@@ -2,7 +2,6 @@
  - name: Transfer and execute a script 
    hosts: pappomi02.intranet.mango.es
    remote_user: mango_ops
-   become: no 
    vars: 
      - queue: ""
      - items: "" 
