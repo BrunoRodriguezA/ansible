@@ -3,7 +3,7 @@
   hosts: pappomi02.intranet.mango.es
   remote_user: mango_ops 
   vars: 
-# scritp(s) service star|stop [0|1]
+# scritp(s) service start|stop [0|1]
    start: /opt/scripts_operador/apagado_encendido.sh 1
    stop: /opt/scripts_operador/apagado_encendido.sh 0
 
