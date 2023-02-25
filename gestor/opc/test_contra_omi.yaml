@@ -4,10 +4,10 @@
   remote_user: mango_ops
 
   tasks:
-  - name: Ejecutar script 
+  - name: run_script 
     shell: /opt/scripts_operador/apagado_encendido.sh 0
     register: cmd_output_status
-  - name: Show output
+  - name: show_output
     debug: 
      var: cmd_output_status.stdout_lines
 
@@ -20,7 +20,7 @@
 
 # si esta UP, para el servicio y vuelve a arrancarlo
   - name: stop
-    shell: /opt/scripts_operador/apagado_encendido.sh 0 && /etc/ansible/gestor/stop.sh 1
+    shell: /opt/scripts_operador/apagado_encendido.sh 0 && /opt/scripts_operador/apagado_encendido.sh 1
     register: cmd_output2
     when: 
      - cmd_output_status.stdout == "Arrancado"
