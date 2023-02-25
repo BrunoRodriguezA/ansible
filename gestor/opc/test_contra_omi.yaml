@@ -1,0 +1,29 @@
+--- 
+- name: Transfer and execute script
+  hosts: pappomi02.intranet.mango.es
+  remote_user: mango_ops
+
+  tasks:
+  - name: Ejecutar script 
+    shell: /opt/scripts_operador/apagado_encendido.sh 0
+    register: cmd_output_status
+  - name: Show output
+    debug: 
+     var: cmd_output_status.stdout_lines
+
+# si esta KO, arranca el servicio 
+  - name: start
+    shell: /opt/scripts_operador/apagado_encendido.sh 1
+    register: cmd_output1
+    when: 
+     - cmd_output_status.stdout == "NOT RUNNING"
+
+# si esta UP, para el servicio y vuelve a arrancarlo
+  - name: stop
+    shell: /opt/scripts_operador/apagado_encendido.sh 0 && /etc/ansible/gestor/stop.sh 1
+    register: cmd_output2
+    when: 
+     - cmd_output_status.stdout == "Arrancado"
+
+  - debug: 
+     var: cmd_output2.stdout_lines
