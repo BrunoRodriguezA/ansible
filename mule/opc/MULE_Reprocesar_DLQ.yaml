@@ -1,0 +1,14 @@
+--- 
+ - name: Transfer and execute a script 
+   hosts: pappomi02.intranet.mango.es
+   remote_user: mango_ops
+   become: no 
+   vars: 
+     - queue: ""
+     - items: "" 
+   tasks: 
+     - name: Reprocesar colas
+       shell: /opt/scripts_operador/mulesoft_reprocess_dlq.sh {{queue}} {{items}}
+       register: cmd_output
+     - debug: 
+        var: cmd_output.stdout_lines
