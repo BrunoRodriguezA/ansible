@@ -3,6 +3,7 @@
   hosts: pappomi02.intranet.mango.es
   remote_user: mango_ops
 
+# segun el status: 
   tasks:
   - name: run_script 
     shell: /opt/scripts_operador/apagado_encendido.sh 0
@@ -11,19 +12,18 @@
     debug: 
      var: cmd_output_status.stdout_lines
 
-# si esta KO, arranca el servicio 
+# si esta KO, arranca el servicio:
   - name: start
     shell: /opt/scripts_operador/apagado_encendido.sh 1
     register: shell_output1
     when: 
      - cmd_output_status.stdout == "NOT RUNNING"
 
-# si esta UP, para el servicio y vuelve a arrancarlo
+# si esta UP, para el servicio y vuelve a arrancarlo:
   - name: stop
     shell: /opt/scripts_operador/apagado_encendido.sh 0 && /opt/scripts_operador/apagado_encendido.sh 1
     register: shell_output2
     when: 
      - cmd_output_status.stdout == "Arrancado"
-
   - debug: 
      var: shell_output2.stdout_lines
