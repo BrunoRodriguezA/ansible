@@ -8,4 +8,4 @@
      - items: "" 
    tasks: 
      - name: Execute script
-       shell: /root/repro_colas.sh {{queue}} {{items}}
+       shell: /etc/ansible/lab/repro_colas.sh {{queue}} {{items}}
