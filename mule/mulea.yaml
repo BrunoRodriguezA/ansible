@@ -6,7 +6,7 @@
      - items: "" 
    tasks: 
      - name: Execute script
-       shell: /etc/ansible/lab/repro_colas.sh {{queue}} {{items}}
+       shell: /etc/ansible/mule/repro_colas.sh {{queue}} {{items}}
        register: output
      - debug:
         var: output.stdout_lines
