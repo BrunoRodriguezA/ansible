@@ -2,12 +2,13 @@
 - name: Transfer and execute script
   hosts: localhost
   vars:
+# script ... 
    start: /etc/ansible/gestor/same.sh 1 
    stop: /etc/ansible/gestor/same.sh 0 
 
   tasks:
   - name: Ejecutar script 
-    shell: /etc/ansible/gestor/apagado_encendido.sh 0 
+    shell: /etc/ansible/gestor/apagado_encendido.sh 1 
     register: cmd_output_status
   - name: Show output
     debug: 
