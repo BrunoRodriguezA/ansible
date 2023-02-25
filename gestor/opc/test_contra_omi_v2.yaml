@@ -15,25 +15,24 @@
      var: cmd_output_status.stdout_lines
 
 # si esta NOT RUNNING levanta el servicio 
-
   - name: start
     shell: "{{ start }}"
-    register: cmd_output1
+    register: shell_output1
     when: 
      - cmd_output_status.stdout == "NOT RUNNING"
   - debug: 
-     var: cmd_output1.stdout_lines
+     var: shell_output1.stdout_lines
     when:
      - cmd_output_status.stdout == "NOT RUNNING"
 
 # si esta RUNNING, para el servicio y vuelve a levantarlo 
   - name: stop
     shell: "{{ stop }} && {{ start }}"
-    register: cmd_output2
+    register: shell_output2
     when: 
      - cmd_output_status.stdout == "Arrancado"
 
   - debug: 
-     var: cmd_output2.stdout_lines  
+     var: shell_output2.stdout_lines  
     when: 
      - cmd_output_status.stdout == "Arrancado"

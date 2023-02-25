@@ -14,16 +14,16 @@
 # si esta KO, arranca el servicio 
   - name: start
     shell: /opt/scripts_operador/apagado_encendido.sh 1
-    register: cmd_output1
+    register: shell_output1
     when: 
      - cmd_output_status.stdout == "NOT RUNNING"
 
 # si esta UP, para el servicio y vuelve a arrancarlo
   - name: stop
     shell: /opt/scripts_operador/apagado_encendido.sh 0 && /opt/scripts_operador/apagado_encendido.sh 1
-    register: cmd_output2
+    register: shell_output2
     when: 
      - cmd_output_status.stdout == "Arrancado"
 
   - debug: 
-     var: cmd_output2.stdout_lines
+     var: shell_output2.stdout_lines
