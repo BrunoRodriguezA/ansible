@@ -2,27 +2,34 @@
 - name: Transfer and execute script
   hosts: localhost
   vars:
-   up: /etc/ansible/gestor/up.sh
-   down: /etc/ansible/gestor/stop.sh
+   start: /etc/ansible/gestor/same.sh 1 
+   stop: /etc/ansible/gestor/same.sh 0 
+
   tasks:
   - name: Ejecutar script 
-    shell: /etc/ansible/gestor/apagado_encendido.sh 0  
+    shell: /etc/ansible/gestor/apagado_encendido.sh 0 
     register: cmd_output_status
   - name: Show output
     debug: 
      var: cmd_output_status.stdout_lines
 
   - name: start
-    shell: /etc/ansible/gestor/up.sh
+    shell: "{{ start }}"
     register: cmd_output1
     when: 
      - cmd_output_status.stdout == "NOT RUNNING"
+  - debug: 
+     var: cmd_output1.stdout_lines
+    when:
+     - cmd_output_status.stdout == "NOT RUNNING"
 
   - name: stop
-    shell: /etc/ansible/gestor/stop.sh && /etc/ansible/gestor/up.sh
+    shell: "{{ stop }} && {{ start }}"
     register: cmd_output2
     when: 
      - cmd_output_status.stdout == "Arrancado"
 
   - debug: 
      var: cmd_output2.stdout_lines  
+    when: 
+     - cmd_output_status.stdout == "Arrancado"
