@@ -8,4 +8,4 @@
      - items: "" 
    tasks: 
      - name: Execute script
-       shell: /home/astro/ansible/plays/repro_colas.sh {{queue}} {{items}}
+       shell: /root/repro_colas.sh {{queue}} {{items}}
